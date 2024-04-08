@@ -1,0 +1,91 @@
+import 'package:flutter/material.dart';
+
+import 'package:movies_app/app_theme.dart';
+import 'package:movies_app/home/movies_detals/screen.dart';
+import 'package:movies_app/models/up_film.dart';
+import 'package:movies_app/services/api_upcoming.dart';
+import 'up_comin_item.dart';
+
+
+
+class UpComing_details extends StatefulWidget {
+
+
+
+  @override
+  State<UpComing_details> createState() => _UpComing_detialsState();
+}
+
+class _UpComing_detialsState extends State<UpComing_details> {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<Upcomingfilm?>(
+      future: ApiRecommended.getUpFilms(),
+      builder: (context, snapshot) {
+        if(snapshot.connectionState==ConnectionState.waiting){
+          return const Center(
+            child: CircularProgressIndicator(
+              backgroundColor: MyTheme.whiteColor,
+              color: MyTheme.yellowColor,
+            ),
+          );
+        } else if(snapshot.hasError){
+          return Center(
+            child: Column(
+              children: [
+                const Text('Smothing went Wrong'),
+                ElevatedButton(onPressed: (){
+                  ApiRecommended.getUpFilms();
+                  setState(() {
+
+                  });
+                }, child: const Text('Try Again'))
+              ],
+            ),
+          );
+        }
+        if(snapshot.data?.success == false){
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(snapshot.data?.status_message ??'Smothing went Wrong'),
+              ElevatedButton(onPressed: (){
+                ApiRecommended.getUpFilms();
+                setState(() {
+
+                });
+              }, child: const Text('Try Again'))
+            ],
+          );
+        }
+        var filmList = snapshot.data?.results ?? [];
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Up Coming Movies',
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(color: MyTheme.whiteColor),),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*.27,
+
+              child: ListView.builder(itemBuilder: (context, index) {
+                return InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder:(context) => DetailsScreen(movieId: filmList[index].id!,movieName: filmList[index].originalTitle!),));
+                    },
+                    child: UpcomingItem(res: filmList[index]));
+              },
+                itemCount: filmList.length,
+                scrollDirection: Axis.horizontal,
+              ),
+            )
+          ],
+        );
+      },
+    );
+  }
+}
