@@ -1,5 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/dev
 import '../models/movies_discover.dart';
 
 class ApiManager {

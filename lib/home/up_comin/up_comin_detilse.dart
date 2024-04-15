@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/app_theme.dart';
 import 'package:movies_app/home/movies_detals/screen.dart';
+import 'package:movies_app/home/up_comin/up_comin_item.dart';
 import 'package:movies_app/models/up_film.dart';
 import 'package:movies_app/services/api_upcoming.dart';
-import 'up_comin_item.dart';
+
+
 
 class UpComing_details extends StatefulWidget {
 

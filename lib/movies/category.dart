@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/dev
 import 'package:movies_app/app_theme.dart';
 import 'package:movies_app/models/list_movies.dart';
 import 'package:movies_app/movies/category_item.dart';

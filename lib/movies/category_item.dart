@@ -1,8 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:movies_app/app_theme.dart';
 import 'package:movies_app/home/movies_detals/screen.dart';
 import 'package:movies_app/models/movies_discover.dart';
+=======
+
+import 'package:movies_app/app_theme.dart';
+import 'package:movies_app/home/movies_detals/screen.dart';
+import 'package:movies_app/models/movies_discover.dart';
+import 'package:movies_app/models/popular.dart';
+>>>>>>> origin/dev
 import 'package:movies_app/movies/discover_item.dart';
 import 'package:movies_app/services/api_manger.dart';
 

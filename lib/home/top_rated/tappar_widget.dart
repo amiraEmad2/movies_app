@@ -6,6 +6,7 @@ import 'package:movies_app/models/top.dart';
 import 'package:movies_app/services/api_toprated.dart';
 import 'tappar.dart';
 
+
 class TopRatedWidget extends StatefulWidget {
   static const String routeName = '';
 
